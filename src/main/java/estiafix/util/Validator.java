@@ -73,7 +73,7 @@ public final class Validator {
             return Optional.of("Η ώρα λήξης πρέπει να είναι μετά την ώρα έναρξης!");
         }
 
-        if (from < WORK_START || from > WORK_END) {
+        if (from.isBefore(WORK_START) || from.isAfter(WORK_END)) {
             return Optional.of("Οι τεχνικοί δουλέυουν 08:00 - 16:00");
         }
 

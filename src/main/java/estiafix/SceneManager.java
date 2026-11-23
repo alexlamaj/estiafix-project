@@ -28,7 +28,7 @@ public final class SceneManager {
         if (scene == null) {
 
             scene = new Scene(root, WIDTH, HEIGHT);
-            URL css = MainApp.class.getResource("css/style.css");
+            URL css = MainApp.class.getResource("/css/style.css");
 
             if (css != null) {
                 scene.getStylesheets().add(css.toExternalForm());
@@ -46,7 +46,7 @@ public final class SceneManager {
 
     private static Parent load(View view) {
 
-        URL fxml = MainApp.class.getResource("view/" + view.getFxmlFile());
+        URL fxml = MainApp.class.getResource("/view/" + view.getFxmlFile());
         if (fxml == null) {
             throw new IllegalStateException("Δεν βρέθηκε το αρχείο view!");
         }

@@ -186,6 +186,11 @@
     -fx-border-radius: 4;
 }
 
+.error-label {
+    -fx-text-fill: #B3261E;
+    -fx-font-size: 13px;
+}
+
 .form-actions {
     -fx-padding: 16 0 0 0;
 }
@@ -198,7 +203,7 @@
 .status-scheduled { -fx-text-fill: #0B3D7A; -fx-font-weight: bold; }
 .status-in-progress { -fx-text-fill: #8A5300; -fx-font-weight: bold; }
 .status-completed { -fx-text-fill: #1B6E2E; }
-.status-cancelled { -fx-text-fill: #8C1D18; }
+.status-canceled { -fx-text-fill: #8C1D18; }
 
 .table-row-cell:selected .table-cell {
     -fx-text-fill: #F5F5F5;

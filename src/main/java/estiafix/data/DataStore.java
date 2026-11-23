@@ -55,9 +55,9 @@ public final class DataStore {
     private void loadSampleData() {
 
         sample(190, "marina", "B", 214, Category.INTERNET, "Το WiFi στο δωμάτιο κόβεται κάθε λίγα λεπτά", "2026-11-03T18:20", Status.COMPLETED, "Αλλαγή access point στον 2ο όροφο");
-        sample(193, "nikos", "A", 105, Category.ELECTRICAL, "Η πρίζα δίπλα στο γραφείο δεν έχει ρεύμα", "2026-11-06Τ10:05", Status.COMPLETED, "Αλλαγή πρίζας");
+        sample(193, "nikos", "A", 105, Category.ELECTRICAL, "Η πρίζα δίπλα στο γραφείο δεν έχει ρεύμα", "2026-11-06T10:05", Status.COMPLETED, "Αλλαγή πρίζας");
         sample(196, "marina", "B", 214, Category.DOORS_FURNITURE, "Η πόρτα της ντουλάπας δεν κλείνει έσπασε ο μεντεσές", "2026-11-12T21:40", Status.SCHEDULED, "");
-        sample(198, "eleni", "B", 305, Category.PLUMBING, "Δεν υπάρχει ζεστό νερό σε όλον τον όροφο", "2026-11-18Τ21:40", Status.IN_PROGRESS, "Περιμένουμε ανταλλακτικά για τον θερμοσίφωνα");
+        sample(198, "eleni", "B", 305, Category.PLUMBING, "Δεν υπάρχει ζεστό νερό σε όλον τον όροφο", "2026-11-18T21:40", Status.IN_PROGRESS, "Περιμένουμε ανταλλακτικά για τον θερμοσίφωνα");
         sample(203, "kostas", "C", 410, Category.HEATING, "Το καλοριφέρ κάνει δυνατό θόρυβο την νύχτα", "2026-11-18T23:10", Status.SUBMITTED, "");
         sample(207, "anna", "B", 118, Category.ELECTRICAL, "Ο διάδρομος του 1ου ορόφου είναι σκοτεινός, μάλλον κάηκαν οι λάμπες", "2026-11-19T19:30", Status.SCHEDULED, "");
         sample(215, "giorgos", "A", 221, Category.PLUMBING, "Η βρύση του νιπτήρα στάζει συνέχεια", "2026-11-20T09:45", Status.SUBMITTED, "");

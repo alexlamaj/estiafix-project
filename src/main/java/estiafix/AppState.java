@@ -49,7 +49,7 @@ public final class AppState {
     public Optional<String> takeFlashMessage() {
         String message = flashMessage;
         flashMessage = null;
-        return Optional.onNullable(message);
+        return Optional.ofNullable(message);
     }
 
 }

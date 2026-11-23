@@ -24,6 +24,7 @@ public class MyReportsController {
     private static final String ALL = "Όλες";
 
     @FXML private Label messageLabel;
+    @FXML private Label countLabel;
     @FXML private ComboBox<String> statusFilter;
     @FXML private TextField searchField;
     @FXML private TableView<FaultReport> table;

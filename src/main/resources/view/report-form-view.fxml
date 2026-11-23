@@ -45,10 +45,17 @@
                 </HBox>
 
                 <Label text="Τι ακριβώς συμβαίνει;" styleClass="field-label" />
+                <TextArea fx:id="descriptionArea" wrapText="true" prefRowCount="4" />
+                <Label fx:id="charCountLabel" styleClass="hint" />
+                <Label fx:id="descriptionError" styleClass="error-label" wrapText="true" />
+                <CheckBox fx:id="urgentCheck" text="Επείγον: νερό που τρέχει, χωρίς ρε΄θμα ή χωρίς θέρμανση"  />
+
+                <Label text="Τι ακριβώς συμβάινει;" styleClass="field-label" />
                 <RadioButton fx:id="withoutMeRadio" text="Ναι, μπορεί να μπει χωρίς εμένα στο δωμάτιο" toggleGroup="$accessGroup" />
                 <CheckBox fx:id="consentCheck" styleClass="indented" text="Συναινώ να μπει ο τεχνικός στο δωμάτιο μου" />
                 <Label fx:id="consentError" styleClass="error-label" wrapText="true" />
                 <RadioButton fx:id="withMeRadio" text="Όχι, μόνο όταν είμαι και εγώ στο δωμάτιο" toggleGroup="$accessGroup" />
+
                 <HBox fx:id="hoursBox" spacing="8" alignment="CENTER_LEFT" styleClass="indented">
                     <Label text="Από" />
                     <ComboBox fx:id="fromBox" prefWidth="110" />

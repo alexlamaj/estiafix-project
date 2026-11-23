@@ -118,7 +118,7 @@ public class ReportFormController {
         String building = buildingBox.getValue();
         int room = Integer.parseInt(roomField.getText().trim());
 
-        FaultReport report = new FaultReport(student.username(), building, category, descriptionArea.getText().trim(), LocalDateTime.now());
+        FaultReport report = new FaultReport(student.username(), building, room, category, descriptionArea.getText().trim(), LocalDateTime.now());
         report.setUrgent(urgentCheck.isSelected());
         report.setAccessWithoutMe(withoutMe);
 
@@ -168,7 +168,7 @@ public class ReportFormController {
     private void showFormError(String message) {
         formError.setText(message);
         setShown(formError, true);
-        if (firstInvalidField == null) {
+        if (firstInvalidField != null) {
             firstInvalidField.requestFocus();
         }
     }

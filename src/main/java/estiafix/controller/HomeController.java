@@ -28,7 +28,7 @@ public class HomeController {
         buildingTitle.setText("Γνωστές βλάβες στο κτήριο " + student.building());
 
         myOpenList.setItems(new FilteredList<>(DataStore.get().getReports(), report -> report.belongsTo(student.username()) && report.isOpen()));
-        buildingIssuesList.setItems(new FilteredList<>(DataStore.get().getReports(), report -> getBuilding().equals(student.building()) && report.isOpen()));
+        buildingIssuesList.setItems(new FilteredList<>(DataStore.get().getReports(), report -> report.getBuilding().equals(student.building()) && report.isOpen()));
 
         myOpenList.setCellFactory(list -> createReportCell());
         buildingIssuesList.setCellFactory(list -> createReportCell());
