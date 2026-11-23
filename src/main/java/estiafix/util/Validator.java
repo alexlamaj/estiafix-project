@@ -33,4 +33,64 @@ public final class Validator {
 
     }
 
+    public static Optional<String> description(String text) {
+
+        int length = text == null ? 0 : text.trim().length();
+
+        if (length < 20) {
+            return Optional.of("Γράψε τουλάχιστον 20 χαρακτήρες!");
+        }
+
+        if (length > 500) {
+            return Optional.of("Η περιγραφή χωράει έως 500 χαρακτήρες!");
+        }
+
+        return Optional.empty();
+
+    }
+
+    public static Optional<String> access(Boolean withoutMe) {
+        if (withoutMe == null) {
+            return Optional.of("Πες μας αν μπορεί να μπει ο τεχνικός χωρίς εσένα στον χώρο...");
+        }
+        return Optional.empty();
+    }
+
+    public static Optional<String> consent(boolean withoutMe, boolean consentGiven) {
+        if (withoutMe && !consentGiven) {
+            return Optional.of("Χρειάζεται η συναίνεση σου για να μπει ο τεχνικός...");
+        }
+        return Optional.empty();
+    }
+
+    public static Optional<String> hours(LocalTime from, LocalTime to) {
+
+        if (from == null || to == null) {
+            return Optional.of("Διάλεξε από ποια έως ποια ώρα είσαι στο δωμάτιο...");
+        }
+
+        if (!to.isAfter(from)) {
+            return Optional.of("Η ώρα λήξης πρέπει να είναι μετά την ώρα έναρξης!");
+        }
+
+        if (from < WORK_START || from > WORK_END) {
+            return Optional.of("Οι τεχνικοί δουλέυουν 08:00 - 16:00");
+        }
+
+        return Optional.empty();
+
+    }
+
+    public static Optional<String> phone(String text) {
+
+        String value = text == null ? "" : text.replace(" ", "").trim();
+
+        if (!value.matches("69\\d{8}|2\\d{9}")) {
+            return Optional.of("Το τηλέφωνο θέλει 10 ψηφία, π.χ. 6912345678");
+        }
+
+        return Optional.empty();
+
+    }
+
 }

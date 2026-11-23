@@ -6,9 +6,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="estiafix.controller.MyReportsController" styleClass="screen">
 
-</AnchorPane>
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="12">
+            <Button text="Αρχική" onAction="#onHome" styleClass="nav-button" />
+            <Label text="EstiaFix" styleClass="app-title" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="+ Νέα Δήλωση" onAction="#onNewReport" styleClass="nav-button" />
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="12" styleClass="content">
+
+            <Label text="Οι δηλώσεις μου" styleClass="screen-title" />
+            <Label fx:id="messageLabel" styleClass="info-banner" wrapText="true" maxWidth="Infinity" />
+
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Κατάσταση" />
+                <ComboBox fx:id="statusFilter" prefWidth="190" />
+                <TextField fx:id="searchField" prefWidth="320" promptText="Αναζήτηση" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="countLabel" styleClass="hint" />
+            </HBox>
+
+            <TableView fx:id="table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="codeColumn" text="Αριθμός" prefWidth="130" />
+                    <TableColumn fx:id="categoryColumn" text="Κατηγορία" prefWidth="190" />
+                    <TableColumn fx:id="locationColumn" text="Δωμάτιο" prefWidth="110" />
+                    <TableColumn fx:id="dateColumn" text="Ημερομηνία" prefWidth="180" />
+                    <TableColumn fx:id="statusColumn" text="Κατάσταση" prefWidth="190" />
+                </columns>
+            </TableView>
+
+            <Label fx:id="detailsLabel" styleClass="details" wrapText="true" maxWidth="Infinity" />
+
+            <HBox spacing="12" alignment="CENTER_RIGHT">
+                <Button fx:id="cancelButton" text="Ακύρωση Δήλωσης" onAction="#onCancelReport" styleClass="danger-button" />
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
