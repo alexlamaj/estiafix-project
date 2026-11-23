@@ -8,6 +8,69 @@
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="estiafix.controller.ReportFormController" styleClass="screen">
 
+    <fx:define>
+        <ToggleGroup fx:id="accessGroup" />
+    </fx:define>
 
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="12">
+            <Button text="Πίσω" onAction="#onBack" styleClass="nav-button" />
+            <Label text="EstiaFix" styleClass="app-title" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="form-scroll">
+
+            <VBox spacing="10" styleClass="content" maxWidth="760">
+
+                <Label text="Στοιχεία Βλάβης" styleClass="screen-title" />
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="categoryLabel" styleClass="pill" />
+                    <Hyperlink text="Αλλαγή Κατηγορίας" onAction="#onBack" />
+                </HBox>
+                <Label fx:id="formError" styleClass="error-banner" wrapText="true" maxWidth="Infinity" />
+
+                <Label text="Κτήριο και Δωμάτιο" styleClass="field-label" />
+                <HBox spacing="12">
+                    <VBox spacing="4">
+                        <ComboBox fx:id="buildingBox" prefWidth="120" promptText="Κτήριο" />
+                        <Label fx:id="buildingError" styleClass="error-label" wrapText="true" />
+                    </VBox>
+                    <VBox spacing="4">
+                        <TextField fx:id="roomField" prefWidth="120" promptText="Δωμάτιο" />
+                        <Label fx:id="roomError" styleClass="error-label" wrapText="true" maxWidth="420" />
+                    </VBox>
+                </HBox>
+
+                <Label text="Τι ακριβώς συμβαίνει;" styleClass="field-label" />
+                <RadioButton fx:id="withoutMeRadio" text="Ναι, μπορεί να μπει χωρίς εμένα στο δωμάτιο" toggleGroup="$accessGroup" />
+                <CheckBox fx:id="consentCheck" styleClass="indented" text="Συναινώ να μπει ο τεχνικός στο δωμάτιο μου" />
+                <Label fx:id="consentError" styleClass="error-label" wrapText="true" />
+                <RadioButton fx:id="withMeRadio" text="Όχι, μόνο όταν είμαι και εγώ στο δωμάτιο" toggleGroup="$accessGroup" />
+                <HBox fx:id="hoursBox" spacing="8" alignment="CENTER_LEFT" styleClass="indented">
+                    <Label text="Από" />
+                    <ComboBox fx:id="fromBox" prefWidth="110" />
+                    <Label text="έως" />
+                    <ComboBox fx:id="toBox" prefWidth="110" />
+                </HBox>
+                <Label fx:id="hoursError" styleClass="error-label" wrapText="true" />
+                <Label fx:id="accessError" styleClass="error-label" wrapText="true" />
+
+                <Label text="Τηλέφωνο Επικοινωνίας" styleClass="field-label" />
+                <TextField fx:id="phoneField" prefWidth="220" maxWidth="220" />
+                <Label text="Το τηλέφωνο σου το βλέπει μόνο το τεχνικό προσωπικό" styleClass="hint" />
+                <Label fx:id="phoneError" styleClass="error-label" wrapText="true" />
+
+                <HBox spacing="12" alignment="CENTER_RIGHT" styleClass="form-actions">
+                    <Button text="Ακύρωση" onAction="#onBack" styleClass="secondary-button" cancelButton="true" />
+                    <Button text="Υποβολή" onAction="#onSubmit" styleClass="primary-button" defaultButton="true" />
+                </HBox>
+
+            </VBox>
+
+        </ScrollPane>
+    </center>
 
 </BorderPane>

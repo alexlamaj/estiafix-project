@@ -1,0 +1,205 @@
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+    -fx-font-size: 14px;
+}
+
+.screen {
+    -fx-background-color: #F5F5F5;
+}
+
+.content {
+    -fx-padding: 24;
+}
+
+.header {
+    -fx-background-color: #1E3A5F;
+    -fx-padding: 12 24 12 24;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.app-subtitle {
+    -fx-text-fill: #D6E4F5;
+    -fx-font-size: 14px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 14 6 14;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+}
+
+.screen-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+.section-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+.field-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+    -fx-padding: 8 0 0 0;
+}
+
+.hint {
+    -fx-text-fill: rgba(34, 34, 34, 0.4);
+    -fx-font-size: 13px;
+}
+
+.pill {
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #0B3D7A;
+    -fx-padding: 4 12 4 12;
+    -fx-background-radius: 12;
+}
+
+.indented {
+    -fx-padding: 0 0 0 28;
+}
+
+.primary-button, .big-primary-button {
+    -fx-background-color: #1F5FBF;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 22 10 22;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.big-primary-button {
+    -fx-font-size: 18px;
+    -fx-padding: 14 28 14 28;
+}
+
+.primary-button:hover, .big-primary-button:hover {
+    -fx-background-color: #174A96;
+}
+
+.primary-button:focused, .big-primary-button:focused, .secondary-button:focused, .category-button:focused {
+    -fx-border-color: #F2A900;
+    -fx-border-width: 3;
+    -fx-border-radius: 8;
+}
+
+.secondary-button {
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #1F5FBF;
+    -fx-border-color: #1F5FBF;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-font-size: 16px;
+    -fx-padding: 9 20 9 20;
+    -fx-cursor: hand;
+}
+
+.danger-button {
+    -fx-background-color: #B3261E;
+    -fx-text-fill: #F5F5F5;
+    -fx-font-size: 15px;
+    -fx-padding: 8 18 8 18;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.danger-button:disabled {
+    -fx-opacity: 0.4;
+}
+
+.category-button {
+    -fx-pref-width: 270px;
+    -fx-pref-height: 96px;
+    -fx-font-size: 17px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #222222;
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.category-button:hover {
+    -fx-border-color: #1F5FBF;
+    -fx-border-width: 2;
+}
+
+.warning-card {
+    -fx-background-color: #F5F5F5;
+    -fx-border-color: #E0A030;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 16;
+}
+
+.summary-card, .details {
+    -fx-background-color: #F5F5F5;
+    -fx-border-color: #DDE1E7;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 14;
+}
+
+.success-title {
+    -fx-text-fill: #1B6E2E;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.error-banner {
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #8C1D18;
+    -fx-padding: 10;
+    -fx-background-radius: 6;
+}
+
+.info-banner {
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #0B3D7A;
+    -fx-padding: 10;
+    -fx-background-radius: 6;
+}
+
+.field-error {
+    -fx-border-color: #B3261E;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+}
+
+.form-actions {
+    -fx-padding: 16 0 0 0;
+}
+
+.form-scroll, .form-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.status-submitted { -fx-text-fill: #4F5560 }
+.status-scheduled { -fx-text-fill: #0B3D7A; -fx-font-weight: bold; }
+.status-in-progress { -fx-text-fill: #8A5300; -fx-font-weight: bold; }
+.status-completed { -fx-text-fill: #1B6E2E; }
+.status-cancelled { -fx-text-fill: #8C1D18; }
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #F5F5F5;
+}
