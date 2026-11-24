@@ -8,6 +8,7 @@ import estiafix.model.Category;
 import estiafix.model.FaultReport;
 import estiafix.model.Student;
 import estiafix.util.Formats;
+import estiafix.util.Ui;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,6 +20,7 @@ public class CategoryController {
 
     @FXML private VBox duplicateCard;
     @FXML private Label duplicateText;
+    @FXML private Label duplicateTag;
 
     private Category chosenCategory;
     private FaultReport existingReport;
@@ -40,7 +42,8 @@ public class CategoryController {
         if (open.isPresent()) {
 
             existingReport = open.get();
-            duplicateText.setText("Στο κτήριο " + existingReport.getBuilding() + " " + chosenCategory.getLabel() + ">> (" + existingReport.getCode() + ", " + existingReport.getLocation() + "):\n<<" + " " + existingReport.getStatus().getLabel() + " " + Formats.shortDate(existingReport.getCreatedAt()) + ".\n" + "");
+            Ui.statusTag(duplicateTag, existingReport.getStatus());
+            duplicateText.setText(chosenCategory.getLabel() + ", " + existingReport.getCode() + ", δωμάτιο " + existingReport.getLocation() + ", από " + Formats.shortDate(existingReport.getCreatedAt()) + ":\n«" + existingReport.getDescription() + "»\nΑν είναι το ίδιο πρόβλημα, δεν χρειάζεται νέα δήλωση.");
             setDuplicateCardShown(true);
 
         } else {

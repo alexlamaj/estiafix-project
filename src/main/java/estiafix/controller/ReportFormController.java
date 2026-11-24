@@ -111,7 +111,7 @@ public class ReportFormController {
         valid &= check(Validator.phone(phoneField.getText()), phoneError, phoneField);
 
         if (!valid) {
-            showFormError("Η δήλωση δεν στάλθηκε ακόμα: Διόρθωσε τις τιμές και προσπάθησε πάλι!");
+            showFormError("Η δήλωση δεν καταχωρίστηκε. Διόρθωσε τα πεδία με κόκκινο και πάτα ξανά «Καταχώριση δήλωσης».");
             return;
         }
 

@@ -6,16 +6,24 @@ import estiafix.View;
 import estiafix.data.DataStore;
 import estiafix.model.FaultReport;
 import estiafix.model.Student;
+import estiafix.util.Formats;
+import estiafix.util.Ui;
 import javafx.collections.transformation.FilteredList;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 public class HomeController {
 
     @FXML private Label greetingLabel;
+    @FXML private Label roomLabel;
     @FXML private Label buildingTitle;
     @FXML private ListView<FaultReport> myOpenList;
     @FXML private ListView<FaultReport> buildingIssuesList;
@@ -25,6 +33,7 @@ public class HomeController {
 
         Student student = AppState.get().getCurrentStudent();
         greetingLabel.setText("Γεια σου, " + student.firstName());
+        roomLabel.setText("Κτήριο: " + student.building() + ", δωμάτιο " + student.room());
         buildingTitle.setText("Γνωστές βλάβες στο κτήριο " + student.building());
 
         myOpenList.setItems(new FilteredList<>(DataStore.get().getReports(), report -> report.belongsTo(student.username()) && report.isOpen()));
@@ -33,23 +42,51 @@ public class HomeController {
         myOpenList.setCellFactory(list -> createReportCell());
         buildingIssuesList.setCellFactory(list -> createReportCell());
 
-        myOpenList.setPlaceholder(new Label("Δεν έχεις ανοιχτές δηλώσεις!"));
-        buildingIssuesList.setPlaceholder(new Label("Καμία γνωστή βλάβη στο κτήριο σου!"));
+        myOpenList.setPlaceholder(Ui.emptyState("Δεν έχεις ανοιχτές δηλώσεις!"));
+        buildingIssuesList.setPlaceholder(Ui.emptyState("Καμία γνωστή βλάβη στο κτήριο σου!"));
 
     }
 
     private ListCell<FaultReport> createReportCell() {
+
         return new ListCell<>() {
+
+            private final Label tag = new Label();
+            private final Label title = new Label();
+            private final Label meta = new Label();
+            private final Label date = new Label();
+            private final Region spacer = new Region();
+            private final HBox row = new HBox(16, tag, new VBox(1, title, meta), spacer, date);
+
+            {
+                title.getStyleClass().add("row-title");
+                meta.getStyleClass().add("row-meta");
+                date.getStyleClass().add("row-meta");
+                HBox.setHgrow(spacer, Priority.ALWAYS);
+                row.setAlignment(Pos.CENTER_LEFT);
+            }
+
             @Override
             protected void updateItem(FaultReport report, boolean empty) {
+
                 super.updateItem(report, empty);
+                setText(null);
+
                 if (empty || report == null) {
-                    setText(null);
-                } else {
-                    setText(report.getCode() + " . " + report.getCategory().getLabel() + " . " + report.getLocation() + " . " + report.getStatus().getLabel());
+                    setGraphic(null);
+                    return;
                 }
+
+                Ui.statusTag(tag, report.getStatus());
+                title.setText(report.getCategory().getLabel());
+                meta.setText(report.getCode() + ", δωμάτιο " + report.getLocation());
+                date.setText(Formats.shortDate(report.getCreatedAt()));
+                setGraphic(row);
+
             }
+
         };
+
     }
 
     @FXML

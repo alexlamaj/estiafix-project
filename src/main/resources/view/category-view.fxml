@@ -6,43 +6,150 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="estiafix.controller.CategoryController" styleClass="screen">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="estiafix.controller.CategoryController" styleClass="screen">
 
     <top>
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="12">
-            <Button text="Πίσω" onAction="#onBack" styleClass="nav-button"/>
-            <Label text="EstiaFix" styleClass="app-title" />
-            <Region HBox.hgrow="ALWAYS" />
-        </HBox>
+        <VBox>
+            <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+                <HBox alignment="CENTER_LEFT" spacing="9">
+                    <Region styleClass="logo-tag" />
+                    <Label text="EstiaFix" styleClass="brand-name" />
+                </HBox>
+                <Region styleClass="vrule" />
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="Νέα δήλωση βλάβης" styleClass="flow-title" />
+                    <Label text="Βήμα 1 από 2: κατηγορία" styleClass="flow-step" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Ακύρωση" onAction="#onBack" styleClass="link-button" cancelButton="true" />
+            </HBox>
+            <HBox styleClass="progress">
+                <Region styleClass="progress-done" HBox.hgrow="ALWAYS" />
+                <Region styleClass="progress-todo" HBox.hgrow="ALWAYS" />
+            </HBox>
+        </VBox>
     </top>
 
     <center>
-        <VBox spacing="18" styleClass="content">
+        <ScrollPane fitToWidth="true" styleClass="form-scroll">
+            <VBox styleClass="page" spacing="24">
 
-            <Label text="Τι χάλασε;" styleClass="screen-title" />
-            <Label text="Διάλεξε κατηγορία. Θα ελέγξουμε αν η βλάβη έχει ήδη δηλωθεί στο κτήριο σου." styleClass="hint" wrapText="true" />
+                <VBox spacing="8">
+                    <Label text="Τι χάλασε;" styleClass="screen-title" />
+                    <Label text="Διάλεξε κατηγορία. Αν κάποιος το έχει ήδη δηλώσει στο κτήριό σου, θα το δεις πριν συνεχίσεις."
+                           styleClass="lead" wrapText="true" maxWidth="640" />
+                </VBox>
 
-            <TilePane hgap="16" vgap="16" prefColumns="3">
+                <!-- Εμφανίζεται μόνο όταν υπάρχει ήδη ανοιχτή δήλωση (πρόληψη διπλής δήλωσης) -->
+                <VBox fx:id="duplicateCard" styleClass="notice" spacing="10">
+                    <HBox spacing="14" alignment="CENTER_LEFT">
+                        <Label fx:id="duplicateTag" styleClass="tag" />
+                        <Label text="Υπάρχει ήδη ανοιχτή δήλωση στο κτήριό σου" styleClass="notice-title" wrapText="true" />
+                    </HBox>
+                    <Label fx:id="duplicateText" styleClass="notice-text" wrapText="true" />
+                    <HBox spacing="12">
+                        <Button text="Θέλω ενημερώσεις γι' αυτήν" onAction="#onFollow" styleClass="primary-button" />
+                        <Button text="Είναι κάτι άλλο" onAction="#onSomethingElse" styleClass="secondary-button" />
+                    </HBox>
+                </VBox>
 
-                <Button text="θέρμανση" userData="HEATING" onAction="#onCategorySelected" styleClass="category-button" />
-                <Button text="Υδραυλικά" userData="PLUMBING" onAction="#onCategorySelected" styleClass="category-button" />
-                <Button text="Ηλεκτρολογικά" userData="ELECTRICAL" onAction="#onCategorySelected" styleClass="category-button" />
-                <Button text="Ίντερνετ" userData="INTERNET" onAction="#onCategorySelected" styleClass="category-button" />
-                <Button text="Πόρτες και Έπιπλα" userData="DOORS_FURNITURE" onAction="#onCategorySelected" styleClass="category-button" />
-                <Button text="Άλλο" userData="OTHER" onAction="#onCategorySelected" styleClass="category-button" />
+                <!-- Τα κενά 1px αφήνουν να φανεί το φόντο του GridPane: έτσι σχηματίζονται οι γραμμές -->
+                <GridPane styleClass="category-grid" hgap="1" vgap="1">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" />
+                        <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" />
+                        <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS" />
+                    </columnConstraints>
 
-            </TilePane>
+                    <Button text="Θέρμανση" userData="HEATING" onAction="#onCategorySelected"
+                            styleClass="category-button" contentDisplay="GRAPHIC_ONLY" maxWidth="Infinity"
+                            GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <graphic>
+                            <VBox spacing="12">
+                                <Region styleClass="icon-heating" />
+                                <VBox spacing="2">
+                                    <Label text="Θέρμανση" styleClass="cell-title" />
+                                    <Label text="Καλοριφέρ, θερμοστάτης" styleClass="cell-sub" />
+                                </VBox>
+                            </VBox>
+                        </graphic>
+                    </Button>
 
-            <VBox fx:id="duplicateCard" spacing="12" styleClass="warning-card">
-                <Label text="Υπάρχει ήδη δήλωση" styleClass="section-title" />
-                <Label fx:id="duplicateText" wrapText="true" />
-                <HBox spacing="12">
-                    <Button text="Με αφορά και εμένα" onAction="#onFollow" styleClass="primary-button" />
-                    <Button text="Είναι κάτι άλλο, συνέχεια" onAction="#onSomethingElse" styleClass="secondary-button" />
-                </HBox>
+                    <Button text="Υδραυλικά" userData="PLUMBING" onAction="#onCategorySelected"
+                            styleClass="category-button" contentDisplay="GRAPHIC_ONLY" maxWidth="Infinity"
+                            GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <graphic>
+                            <VBox spacing="12">
+                                <Region styleClass="icon-plumbing" />
+                                <VBox spacing="2">
+                                    <Label text="Υδραυλικά" styleClass="cell-title" />
+                                    <Label text="Βρύσες, ζεστό νερό, διαρροές" styleClass="cell-sub" />
+                                </VBox>
+                            </VBox>
+                        </graphic>
+                    </Button>
+
+                    <Button text="Ηλεκτρολογικά" userData="ELECTRICAL" onAction="#onCategorySelected"
+                            styleClass="category-button" contentDisplay="GRAPHIC_ONLY" maxWidth="Infinity"
+                            GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <graphic>
+                            <VBox spacing="12">
+                                <Region styleClass="icon-electrical" />
+                                <VBox spacing="2">
+                                    <Label text="Ηλεκτρολογικά" styleClass="cell-title" />
+                                    <Label text="Πρίζες, φώτα, ασφάλειες" styleClass="cell-sub" />
+                                </VBox>
+                            </VBox>
+                        </graphic>
+                    </Button>
+
+                    <Button text="Internet" userData="INTERNET" onAction="#onCategorySelected"
+                            styleClass="category-button" contentDisplay="GRAPHIC_ONLY" maxWidth="Infinity"
+                            GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox spacing="12">
+                                <Region styleClass="icon-internet" />
+                                <VBox spacing="2">
+                                    <Label text="Internet" styleClass="cell-title" />
+                                    <Label text="Wi-Fi, καλώδιο δικτύου" styleClass="cell-sub" />
+                                </VBox>
+                            </VBox>
+                        </graphic>
+                    </Button>
+
+                    <Button text="Πόρτες και Έπιπλα" userData="DOORS_FURNITURE" onAction="#onCategorySelected"
+                            styleClass="category-button" contentDisplay="GRAPHIC_ONLY" maxWidth="Infinity"
+                            GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox spacing="12">
+                                <Region styleClass="icon-doors" />
+                                <VBox spacing="2">
+                                    <Label text="Πόρτες και έπιπλα" styleClass="cell-title" />
+                                    <Label text="Κλειδαριές, ντουλάπες, γραφείο" styleClass="cell-sub" />
+                                </VBox>
+                            </VBox>
+                        </graphic>
+                    </Button>
+
+                    <Button text="Άλλο" userData="OTHER" onAction="#onCategorySelected"
+                            styleClass="category-button" contentDisplay="GRAPHIC_ONLY" maxWidth="Infinity"
+                            GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <graphic>
+                            <VBox spacing="12">
+                                <Region styleClass="icon-other" />
+                                <VBox spacing="2">
+                                    <Label text="Άλλο" styleClass="cell-title" />
+                                    <Label text="Κάτι που δεν ταιριάζει εδώ" styleClass="cell-sub" />
+                                </VBox>
+                            </VBox>
+                        </graphic>
+                    </Button>
+
+                </GridPane>
+
             </VBox>
-
-        </VBox>
+        </ScrollPane>
     </center>
 
 </BorderPane>

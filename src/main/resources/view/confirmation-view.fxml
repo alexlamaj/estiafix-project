@@ -9,27 +9,47 @@
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="estiafix.controller.ConfirmationController" styleClass="screen">
 
     <top>
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="12">
-            <Label text="EstiaFix" styleClass="app-title"/>
-            <Label text="Αναφορά Βλαβών Φοιτικής Εστίας" styleClass="app-subtitle"/>
-            <Region HBox.hgrow="ALWAYS" />
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="28">
+            <HBox alignment="CENTER_LEFT" spacing="9">
+                <Region styleClass="logo-tag" />
+                <Label text="EstiaFix" styleClass="brand-name" />
+            </HBox>
+            <HBox spacing="24">
+                <Button text="Αρχική" onAction="#onHome" styleClass="tab" />
+                <Button text="Οι δηλώσεις μου" onAction="#onMyReports" styleClass="tab" />
+            </HBox>
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="16" styleClass="content" maxWidth="760">
+        <ScrollPane fitToWidth="true" styleClass="form-scroll">
+            <VBox styleClass="page">
 
-            <Label fx:id="titleLabel" styleClass="success-title" wrapText="true" />
-            <Label fx:id="summaryLabel" styleClass="summary-card" wrapText="true" maxWidth="Infinity" />
-            <Label text="Τι γίνεται τώρα" styleClass="section-title" />
-            <Label fx:id="nextStepsLabel" wrapText="true" />
+                <VBox styleClass="slip" spacing="12" maxWidth="640">
 
-            <HBox spacing="12">
-                <Button text="Οι δηλώσεις μου" onAction="#onMyReports" styleClass="primary-button" defaultButton="true" />
-                <Button text="Αρχική" onAction="#onHome" styleClass="secondary-button" />
-            </HBox>
+                    <Label fx:id="titleLabel" styleClass="ok-title" wrapText="true" />
+                    <HBox spacing="18" alignment="CENTER_LEFT">
+                        <Label fx:id="codeLabel" styleClass="big-code" />
+                        <Label fx:id="statusTag" styleClass="tag" />
+                    </HBox>
+                    <Label text="Με αυτόν τον αριθμό τη βρίσκεις στις δηλώσεις σου." styleClass="hint" />
 
-        </VBox>
+                    <Region styleClass="rule" />
+                    <Label fx:id="summaryLabel" styleClass="summary" wrapText="true" />
+                    <Region styleClass="rule" />
+
+                    <Label text="Τι γίνεται τώρα" styleClass="section-title" />
+                    <Label fx:id="nextStepsLabel" styleClass="steps" wrapText="true" />
+
+                    <HBox spacing="12">
+                        <Button text="Οι δηλώσεις μου" onAction="#onMyReports" styleClass="primary-button" defaultButton="true" />
+                        <Button text="Αρχική" onAction="#onHome" styleClass="secondary-button" />
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
     </center>
 
 </BorderPane>

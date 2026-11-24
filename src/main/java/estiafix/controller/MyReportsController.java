@@ -7,6 +7,7 @@ import estiafix.data.DataStore;
 import estiafix.model.FaultReport;
 import estiafix.model.Status;
 import estiafix.util.Formats;
+import estiafix.util.Ui;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -65,26 +66,30 @@ public class MyReportsController {
 
         statusColumn.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getStatus()));
         statusColumn.setCellFactory(column -> new TableCell<FaultReport, Status>() {
+
+            private final Label tag = new Label();
+
             @Override
             protected void updateItem(Status status, boolean empty) {
 
                 super.updateItem(status, empty);
-                getStyleClass().removeIf(style -> style.startsWith("status-"));
+                setText(null);
 
                 if (empty || status == null) {
-                    setText(null);
+                    setGraphic(null);
                 } else {
-                    setText(status.getLabel());
-                    getStyleClass().add(status.getStyleClass());
+                    Ui.statusTag(tag, status);
+                    setGraphic(tag);
                 }
 
             }
+
         });
 
         // Sorting
         dateColumn.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(dateColumn);
-        table.setPlaceholder(new Label("Δεν βρέθηκαν δηλώσεις με αυτά τα κριτήρια"));
+        table.setPlaceholder(Ui.emptyState("Δεν βρέθηκαν δηλώσεις με αυτά τα κριτήρια"));
 
         // Filtering
         statusFilter.getItems().add(ALL);
@@ -155,7 +160,7 @@ public class MyReportsController {
         }
 
         String note = report.getTechnicianNote().isBlank() ? "-" : report.getTechnicianNote();
-        detailsLabel.setText(report.getCode() + " . " + report.getCategory().getLabel() + " . Δωμάτιο " + report.getLocation() + "\n" + "<<" + report.getDescription() + ">>\n" + "Κατάσταση: " + report.getStatus().getLabel() + " (τελευταία αλλαγή: " + Formats.dateTime(report.getLastUpdated()) + ")\n" + "Σημείωση τεχνικού: " + note);
+        detailsLabel.setText(report.getCode() + ", " + report.getCategory().getLabel() + ", δωμάτιο " + report.getLocation() + "\n«" + report.getDescription() + "»\n" + report.getStatus().getLabel() + " στις " + Formats.dateTime(report.getLastUpdated()) + ". Σημείωση τεχνικού: " + note);
 
     }
 

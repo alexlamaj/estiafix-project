@@ -11,28 +11,37 @@
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="estiafix.controller.HomeController" styleClass="screen">
 
     <top>
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="12">
-            <Label text="EstiaFix" styleClass="app-title"/>
-            <Label text="Αναφορά Βλαβών Φοιτικής Εστίας" styleClass="app-subtitle"/>
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Οι Δηλώσεις Μου" onAction="#onMyReports" styleClass="nav-button" />
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="28">
+            <HBox alignment="CENTER_LEFT" spacing="9">
+                <Region styleClass="logo-tag" />
+                <Label text="EstiaFix" styleClass="brand-name" />
+            </HBox>
+            <HBox spacing="24">
+                <Button text="Αρχική" styleClass="tab-active" />
+                <Button text="Οι δηλώσεις μου" onAction="#onMyReports" styleClass="tab" />
+            </HBox>
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="20" styleClass="content">
+        <VBox styleClass="page" spacing="32">
 
-            <Label fx:id="greetingLabel" styleClass="screen-title" wrapText="true" />
-            <Button text="+ Νέα Δήλωση Βλάβης" onAction="#onNewReport" styleClass="primary-button" defaultButton="true" />
+            <VBox spacing="22">
+                <VBox spacing="6">
+                    <Label fx:id="greetingLabel" styleClass="hello" />
+                    <Label fx:id="roomLabel" styleClass="room" />
+                </VBox>
+                <Button text="Νέα δήλωση βλάβης" onAction="#onNewReport" styleClass="big-primary-button" />
+            </VBox>
 
             <HBox spacing="24" VBox.vgrow="ALWAYS">
-                <VBox spacing="8" HBox.hgrow="ALWAYS">
-                    <Label text="Οι ανοιχτές δηλώσεις μου" styleClass="section-title" />
-                    <ListView fx:id="myOpenList" VBox.vgrow="ALWAYS" />
+                <VBox styleClass="panel" HBox.hgrow="ALWAYS" prefWidth="400">
+                    <Label text="Οι ανοιχτές δηλώσεις σου" styleClass="panel-title" maxWidth="Infinity" />
+                    <ListView fx:id="myOpenList" styleClass="report-list" VBox.vgrow="ALWAYS" />
                 </VBox>
-                <VBox spacing="8" HBox.hgrow="ALWAYS">
-                    <Label fx:id="buildingTitle" styleClass="section-title" />
-                    <ListView fx:id="buildingIssuesList" VBox.vgrow="ALWAYS" />
+                <VBox styleClass="panel" HBox.hgrow="ALWAYS" prefWidth="400">
+                    <Label fx:id="buildingTitle" styleClass="panel-title" maxWidth="Infinity" />
+                    <ListView fx:id="buildingIssuesList" styleClass="report-list" VBox.vgrow="ALWAYS" />
                 </VBox>
             </HBox>
 
