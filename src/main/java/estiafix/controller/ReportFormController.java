@@ -118,6 +118,12 @@ public class ReportFormController {
         String building = buildingBox.getValue();
         int room = Integer.parseInt(roomField.getText().trim());
 
+        Optional<FaultReport> existing = DataStore.get().findOpenReport(student.username(), building, room, category);
+        if (existing.isPresent()) {
+            showFormError("Έχεις ήδη ανοιχτή δήλωση για <<" + category.getLabel() + ">> στο δωμάτιο " + building + " - " + room + " (" + existing.get().getCode() + "). Δες την στις δηλώσεις σου αντί να κάνεις νέα!");
+            return;
+        }
+
         FaultReport report = new FaultReport(student.username(), building, room, category, descriptionArea.getText().trim(), LocalDateTime.now());
         report.setUrgent(urgentCheck.isSelected());
         report.setAccessWithoutMe(withoutMe);

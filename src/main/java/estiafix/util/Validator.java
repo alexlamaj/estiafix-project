@@ -1,5 +1,7 @@
 package estiafix.util;
 
+import estiafix.model.Status;
+
 import java.time.LocalTime;
 import java.util.Optional;
 
@@ -7,6 +9,7 @@ public final class Validator {
 
     public static final LocalTime WORK_START = LocalTime.of(8, 0);
     public static final LocalTime WORK_END = LocalTime.of(16, 0);
+    public static final int MAX_NOTE = 300;
 
     private Validator() {}
 
@@ -87,6 +90,32 @@ public final class Validator {
 
         if (!value.matches("69\\d{8}|2\\d{9}")) {
             return Optional.of("Το τηλέφωνο θέλει 10 ψηφία, π.χ. 6912345678");
+        }
+
+        return Optional.empty();
+
+    }
+
+    public static Optional<String> statusChoice(Status next, boolean noteChanged) {
+
+        if (next == null && !noteChanged) {
+            return Optional.of("Διάλεξε νέα κατάσταση ή άλλαξε τη σημείωση.");
+        }
+
+        return Optional.empty();
+
+    }
+
+    public static Optional<String> technicianNote(Status next, String note) {
+
+        String value = note == null ? "" : note.trim();
+
+        if (value.length() > MAX_NOTE) {
+            return Optional.of("Η σημείωση χωράει έως " + MAX_NOTE + " χαρακτήρες!");
+        }
+
+        if (next != null && !next.isOpen() && value.length() < 5) {
+            return Optional.of("Γράψε σύντομα τι έγινε. Ο φοιτητής θα δει αυτή την σημείωση.");
         }
 
         return Optional.empty();

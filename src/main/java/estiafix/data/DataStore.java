@@ -40,7 +40,21 @@ public final class DataStore {
     }
 
     public boolean hasOpenReport(String username, String building, int room, Category category) {
-        return reports.stream().anyMatch(r -> r.isOpen() && r.getReporter().equals(username) && r.getBuilding().equals(building) && r.getCategory().equals(category) && r.getRoom() == room);
+        return findOpenReport(username, building, room, category).isPresent();
+    }
+
+    public Optional<FaultReport> findOpenReport(String username, String building, int room, Category category) {
+        return reports.stream().filter(r -> r.isOpen() && r.getReporter().equals(username) && r.getBuilding().equals(building) && (r.getRoom() == room) && r.getCategory().equals(category)).findFirst();
+    }
+
+    public void updateByTechnician(FaultReport report, Status newStatus, String note) {
+        LocalDateTime now = LocalDateTime.now();
+        if (newStatus != null) {
+            report.changeStatus(newStatus, now);
+        }
+        if (!note.equals(report.getTechnicianNote())) {
+            report.updateNote(note, now);
+        }
     }
 
     public void cancel(FaultReport report) {

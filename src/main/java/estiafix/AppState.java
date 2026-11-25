@@ -4,7 +4,10 @@ import estiafix.model.Category;
 import estiafix.model.Student;
 import estiafix.model.FaultReport;
 
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public final class AppState {
 
@@ -15,6 +18,7 @@ public final class AppState {
     private Category selectedCategory;
     private FaultReport lastSubmitted;
     private String flashMessage;
+    private final Set<FaultReport> unseenUpdates = new LinkedHashSet();
 
     private AppState() {}
 
@@ -50,6 +54,16 @@ public final class AppState {
         String message = flashMessage;
         flashMessage = null;
         return Optional.ofNullable(message);
+    }
+
+    public void markUpdated(FaultReport report) {
+        unseenUpdates.add(report);
+    }
+
+    public List<FaultReport> takeUpdatesFor(String username) {
+        List<FaultReport> mine = unseenUpdates.stream().filter(report -> report.belongsTo(username)).toList();
+        mine.forEach(unseenUpdates::remove);
+        return mine;
     }
 
 }

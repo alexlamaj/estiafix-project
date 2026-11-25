@@ -50,6 +50,11 @@ public class ConfirmationController {
     }
 
     @FXML
+    private void onTechnician() {
+        SceneManager.show(View.TECHNICIAN);
+    }
+
+    @FXML
     private void onHome() {
         SceneManager.show(View.HOME);
     }

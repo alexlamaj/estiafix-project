@@ -20,11 +20,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class HomeController {
 
     @FXML private Label greetingLabel;
     @FXML private Label roomLabel;
     @FXML private Label buildingTitle;
+    @FXML private Label updatesLabel;
     @FXML private ListView<FaultReport> myOpenList;
     @FXML private ListView<FaultReport> buildingIssuesList;
 
@@ -45,6 +49,27 @@ public class HomeController {
         myOpenList.setPlaceholder(Ui.emptyState("Δεν έχεις ανοιχτές δηλώσεις!"));
         buildingIssuesList.setPlaceholder(Ui.emptyState("Καμία γνωστή βλάβη στο κτήριο σου!"));
 
+        showTechnicianUpdates(student);
+
+    }
+
+    private void showTechnicianUpdates(Student student) {
+
+        List<FaultReport> updates = AppState.get().takeUpdatesFor(student.username());
+
+        if (updates.isEmpty()) {
+            updatesLabel.setVisible(false);
+            updatesLabel.setManaged(false);
+            return;
+        }
+
+        String lines = updates.stream().map(report -> report.getCode() + ": " + report.getStatus().getLabel() + (report.getTechnicianNote().isBlank() ? "" : " . Ο τεχνικός γράφει: <<" + report.getTechnicianNote() + ">>")).collect(Collectors.joining("\n"));
+
+        updatesLabel.setText("Νέα από το τεχνικό τμήμα: \n" + lines);
+        updatesLabel.setVisible(true);
+        updatesLabel.setManaged(true);
+
+
     }
 
     private ListCell<FaultReport> createReportCell() {
@@ -54,6 +79,7 @@ public class HomeController {
             private final Label tag = new Label();
             private final Label title = new Label();
             private final Label meta = new Label();
+            private final Label note = new Label();
             private final Label date = new Label();
             private final Region spacer = new Region();
             private final HBox row = new HBox(16, tag, new VBox(1, title, meta), spacer, date);
@@ -83,6 +109,12 @@ public class HomeController {
                 date.setText(Formats.shortDate(report.getCreatedAt()));
                 setGraphic(row);
 
+                boolean hasNote = !report.getTechnicianNote().isBlank();
+                note.setText(hasNote ? "" + report.getTechnicianNote() : "");
+                note.setVisible(hasNote);
+                note.setManaged(hasNote);
+                setGraphic(row);
+
             }
 
         };
@@ -97,6 +129,11 @@ public class HomeController {
     @FXML
     private void onMyReports() {
         SceneManager.show(View.MY_REPORTS);
+    }
+
+    @FXML
+    private void onTechnician() {
+        SceneManager.show(View.TECHNICIAN);
     }
 
 }

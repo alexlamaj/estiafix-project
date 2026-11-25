@@ -18,6 +18,8 @@
                 <Button text="Αρχική" onAction="#onHome" styleClass="tab" />
                 <Button text="Οι δηλώσεις μου" onAction="#onMyReports" styleClass="tab" />
             </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Προβολή Τεχνικού" onAction="#onTechnician" styleClass="link-button" />
         </HBox>
     </top>
 

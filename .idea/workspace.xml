@@ -5,20 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad36e224-b925-4253-b16f-9ccf7237f8d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/AppState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/AppState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/View.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/controller/ConfirmationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/controller/ConfirmationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/controller/MyReportsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/controller/MyReportsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/controller/ReportFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/controller/ReportFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/data/DataStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/data/DataStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/model/FaultReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/model/FaultReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/model/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/model/Status.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/util/Dialogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/util/Dialogs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/util/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/util/Ui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estiafix/util/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estiafix/util/Validator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/category-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/category-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/confirmation-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/confirmation-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/home-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/home-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/view/my-reports-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/my-reports-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/report-form-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/report-form-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -37,62 +41,65 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.9075191553171607" />
-      <entry key="MS500" value="1.9816829893918961" />
-      <entry key="S2" value="2.3824989598841997" />
-      <entry key="S5" value="3.6626660976932772" />
-      <entry key="S10" value="5.881430209469663" />
-      <entry key="S30" value="15.810552316446586" />
-      <entry key="S60" value="31.660411401074388" />
-      <entry key="M2" value="62.54980746049517" />
-      <entry key="M5" value="142.79428198369283" />
-      <entry key="M10" value="263.50780398208383" />
-      <entry key="M15" value="377.581626865783" />
-      <entry key="M30" value="669.7788230071982" />
-      <entry key="H1" value="1054.8118604619085" />
-      <entry key="H2" value="1426.6756432857428" />
-      <entry key="H4" value="1701.4287773424649" />
-      <entry key="D1" value="1999.7623960244885" />
-      <entry key="W1" value="2058.8893679073526" />
+      <entry key="MS100" value="6.658493036514067E-39" />
+      <entry key="MS500" value="2.315662112188486E-8" />
+      <entry key="S2" value="0.012335841979696172" />
+      <entry key="S5" value="0.17237231684825433" />
+      <entry key="S10" value="0.415177452239707" />
+      <entry key="S30" value="0.7460222117728507" />
+      <entry key="S60" value="0.8955245277607174" />
+      <entry key="M2" value="2.8467026467842533" />
+      <entry key="M5" value="29.558882061244343" />
+      <entry key="M10" value="87.77306117567193" />
+      <entry key="M15" value="142.31969644274466" />
+      <entry key="M30" value="298.86199283193724" />
+      <entry key="H1" value="634.8161283575068" />
+      <entry key="H2" value="1263.3712905212085" />
+      <entry key="H4" value="2025.2660555766706" />
+      <entry key="D1" value="3225.0351341314863" />
+      <entry key="W1" value="3515.470936827226" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="3.6495342984251423E-4" />
-      <entry key="MS500" value="0.2053295788132805" />
-      <entry key="S2" value="0.7200175259773537" />
-      <entry key="S5" value="1.372720920024901" />
-      <entry key="S10" value="2.3880176169744725" />
-      <entry key="S30" value="5.379553302021284" />
-      <entry key="S60" value="9.33654757095829" />
-      <entry key="M2" value="17.456844855889983" />
-      <entry key="M5" value="41.57464443297934" />
-      <entry key="M10" value="81.23742154679299" />
-      <entry key="M15" value="118.22306364185188" />
-      <entry key="M30" value="215.89025016070022" />
-      <entry key="H1" value="359.65221554502534" />
-      <entry key="H2" value="511.6022084015857" />
-      <entry key="H4" value="629.388245043462" />
-      <entry key="D1" value="761.0090772861763" />
-      <entry key="W1" value="787.4651740388282" />
+      <entry key="MS100" value="1.0011218468926415" />
+      <entry key="MS500" value="1.3070534148092392" />
+      <entry key="S2" value="2.7965907965599897" />
+      <entry key="S5" value="4.743678612100771" />
+      <entry key="S10" value="6.283286342188827" />
+      <entry key="S30" value="7.925768395041724" />
+      <entry key="S60" value="8.62048797078485" />
+      <entry key="M2" value="9.970958547691236" />
+      <entry key="M5" value="25.76144420240768" />
+      <entry key="M10" value="70.38014133447554" />
+      <entry key="M15" value="117.57047912144117" />
+      <entry key="M30" value="245.01664650479887" />
+      <entry key="H1" value="448.6948065380895" />
+      <entry key="H2" value="746.6738917647108" />
+      <entry key="H4" value="1077.0764509417072" />
+      <entry key="D1" value="1582.784843882263" />
+      <entry key="W1" value="1704.4290219280172" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9596419429164" />
-      <entry key="MS500" value="1.2090768329988402" />
-      <entry key="S2" value="2.341160973718222" />
-      <entry key="S5" value="4.439885886113376" />
-      <entry key="S10" value="7.759286243797646" />
-      <entry key="S30" value="20.767223921014626" />
-      <entry key="S60" value="40.6064478355253" />
-      <entry key="M2" value="79.64404802770603" />
-      <entry key="M5" value="184.0473699177356" />
-      <entry key="M10" value="344.4448627552403" />
-      <entry key="M15" value="495.5130205869966" />
-      <entry key="M30" value="885.3988444198266" />
-      <entry key="H1" value="1414.2399393026744" />
-      <entry key="H2" value="1938.1202177304785" />
-      <entry key="H4" value="2330.720835965759" />
-      <entry key="D1" value="2760.7522372822114" />
-      <entry key="W1" value="2846.351702309652" />
+      <entry key="MS100" value="0.0013009593017278326" />
+      <entry key="MS500" value="0.36076671851603914" />
+      <entry key="S2" value="2.014885782077664" />
+      <entry key="S5" value="4.2530748205123174" />
+      <entry key="S10" value="6.212348640546954" />
+      <entry key="S30" value="8.45111691384441" />
+      <entry key="S60" value="9.39412899640172" />
+      <entry key="M2" value="12.744375287576773" />
+      <entry key="M5" value="55.23001246914215" />
+      <entry key="M10" value="158.02383583473667" />
+      <entry key="M15" value="259.7420970979304" />
+      <entry key="M30" value="543.7108357849385" />
+      <entry key="H1" value="1083.3372755093133" />
+      <entry key="H2" value="2009.8824494664461" />
+      <entry key="H4" value="3102.2162507380754" />
+      <entry key="D1" value="4807.787145847435" />
+      <entry key="W1" value="5219.894858995872" />
     </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6,
@@ -106,24 +113,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.MainApp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-ac68fc9d2b05-intellij.indexing.shared.core-IU-263.7307.200" />
+        <option value="bundled-jdk-30f59d01ecdd-ac68fc9d2b05-intellij.indexing.shared.core-IU-263.7307.353" />
+        <option value="bundled-js-predefined-d6986cc7102b-56aff7b04f6f-JavaScript-IU-263.7307.353" />
       </set>
     </attachedChunks>
   </component>

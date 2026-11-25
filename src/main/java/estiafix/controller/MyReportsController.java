@@ -6,6 +6,7 @@ import estiafix.View;
 import estiafix.data.DataStore;
 import estiafix.model.FaultReport;
 import estiafix.model.Status;
+import estiafix.util.Dialogs;
 import estiafix.util.Formats;
 import estiafix.util.Ui;
 import javafx.beans.binding.Bindings;
@@ -19,6 +20,7 @@ import javafx.scene.control.*;
 import java.security.AllPermission;
 import java.text.Normalizer;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 public class MyReportsController {
 
@@ -117,9 +119,14 @@ public class MyReportsController {
     private void applyFilters() {
 
         String selectedStatus = statusFilter.getValue();
-        String query = searchField.getText() == null ? "" : searchField.getText().trim().toLowerCase();
+        String query = normalize(searchField.getText());
 
-        filteredReports.setPredicate(report -> report.belongsTo(username) && (selectedStatus == null || ALL.equals(selectedStatus) || report.getStatus().getLabel().equals(selectedStatus)));
+        filteredReports.setPredicate(report -> {
+            boolean mine = report.belongsTo(username);
+            boolean statusOk = selectedStatus == null || ALL.equals(selectedStatus) || report.getStatus().getLabel().equals(selectedStatus);
+            boolean searchOk = query.isEmpty() || matches(report, query);
+            return mine && statusOk && searchOk;
+        });
 
         updateCount();
 
@@ -130,6 +137,11 @@ public class MyReportsController {
 
         FaultReport selected = table.getSelectionModel().getSelectedItem();
         if (selected == null) {
+            return;
+        }
+
+        String question = "Να ακυρωθεί η " + selected.getCode() + " (" + selected.getCategory().getLabel() + ");\nΟ τεχνικός δεν θα έρθει για αυτήν την βλάβη";
+        if (!Dialogs.confirmDestructive(question)) {
             return;
         }
 
@@ -149,6 +161,11 @@ public class MyReportsController {
     @FXML
     private void onNewReport() {
         SceneManager.show(View.CATEGORY);
+    }
+
+    @FXML
+    private void onTechnician() {
+        SceneManager.show(View.TECHNICIAN);
     }
 
     // HELPERS //
@@ -177,6 +194,19 @@ public class MyReportsController {
     private void hideMessage() {
         messageLabel.setVisible(false);
         messageLabel.setManaged(false);
+    }
+
+    private static String normalize(String text) {
+        if (text == null) {
+            return "";
+        }
+        String withoutAccents = Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
+        return withoutAccents.toLowerCase(Locale.ROOT).trim();
+    }
+
+    private static boolean matches(FaultReport report, String query) {
+        String haystack = String.join(" ", report.getCode(), report.getCategory().getLabel(), report.getLocation(), report.getDescription(), report.getStatus().getLabel());
+        return normalize(haystack).contains(query);
     }
 
 }

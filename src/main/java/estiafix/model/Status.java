@@ -1,5 +1,7 @@
 package estiafix.model;
 
+import java.util.List;
+
 public enum Status {
 
     SUBMITTED("Καταχωρίστηκε", "status-submitted"),
@@ -30,6 +32,15 @@ public enum Status {
 
     public boolean canBeCanceled() {
         return this == SUBMITTED || this == SCHEDULED;
+    }
+
+    public List<Status> nextSteps() {
+        return switch (this) {
+            case SUBMITTED -> List.of(SCHEDULED, IN_PROGRESS, COMPLETED, CANCELED);
+            case SCHEDULED -> List.of(IN_PROGRESS, COMPLETED, CANCELED);
+            case IN_PROGRESS -> List.of(SCHEDULED, COMPLETED, CANCELED);
+            case COMPLETED, CANCELED -> List.of();
+        };
     }
 
     @Override

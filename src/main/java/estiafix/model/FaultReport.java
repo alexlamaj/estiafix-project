@@ -154,4 +154,9 @@ public class FaultReport {
         this.lastUpdated = when;
     }
 
+    public void updateNote(String note, LocalDateTime when) {
+        this.technicianNote = note;
+        this.lastUpdated = when;
+    }
+
 }
