@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="estiafix.controller.TechnicianController" styleClass="screen">
+
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="28">
+            <HBox alignment="CENTER_LEFT" spacing="9">
+                <Region styleClass="logo-tag" />
+                <Label text="EstiaFix" styleClass="brand-name" />
+            </HBox>
+            <HBox spacing="24">
+                <Label text="Τεχνικό Τμήμα" styleClass="tab-active" />
+            </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Προβολή Φοιτητή" onAction="#onStudentView" styleClass="link-button" />
+        </HBox>
+    </top>
+
+    <center>
+        <HBox styleClass="page" spacing="24">
+
+            <VBox spacing="16" HBox.hgrow="ALWAYS">
+
+                <VBox spacing="6">
+                    <Label text="Εργασίες" styleClass="screen-title" />
+                    <Label text="Όλες οι δηλώσεις της εστίας. Πρώτα οι επείγουσες, μετά όσες περιμένουν περισσότερο." styleClass="lead" wrapText="true" />
+                </VBox>
+
+                <Label fx:id="messageLabel" styleClass="info-banner" wrapText="true" maxWidth="Infinity" />
+
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Κτήριο" styleClass="field-label" />
+                    <ComboBox fx:id="buildingFilter" prefWidth="100" />
+                    <Label text="Κατάσταση" styleClass="field-label" />
+                    <ComboBox fx:id="statusFilter" prefWidth="180" />
+                    <CheckBox fx:id="urgentOnlyCheck" text="Μόνο Επείγουσες" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="countLabel" styleClass="hint" minWidth="-Infinity" />
+                </HBox>
+
+                <TableView fx:id="jobsTable" VBox.vgrow="ALWAYS">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN" />
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="codeColumn" text="Αριθμός" prefWidth="100" styleClass="code-column" />
+                        <TableColumn fx:id="categoryColumn" text="Κατηγορία" prefWidth="140" />
+                        <TableColumn fx:id="roomColumn" text="Δωμάτιο" prefWidth="80" />
+                        <TableColumn fx:id="urgentColumn" text="Επείγον" prefWidth="90" />
+                        <TableColumn fx:id="dateColumn" text="Δηλώθηκε" prefWidth="140" />
+                        <TableColumn fx:id="statusColumn" text="Κατάσταση" prefWidth="190" minWidth="190" />
+                    </columns>
+                </TableView>
+
+            </VBox>
+
+            <VBox styleClass="panel" prefWidth="380" minWidth="340" maxWidth="420">
+                <ScrollPane fitToWidth="true" styleClass="form-scroll" VBox.vgrow="ALWAYS">
+                    <VBox>
+
+                        <Label fx:id="emptyDetails" styleClass="empty-state" wrapText="true" text="Διάλεξε μια εργασία για να δεις τα στοιχεία της" />
+
+                        <VBox fx:id="detailsBox" styleClass="job-details" spacing="12">
+
+                            <HBox spacing="14" alignment="CENTER_LEFT">
+                                <Label fx:id="jobCodeLabel" styleClass="job-code" />
+                                <Label fx:id="jobTag" styleClass="tag" />
+                            </HBox>
+
+                            <Label fx:id="jobTitleLabel" styleClass="section-title" wrapText="true" />
+                            <Label fx:id="jobDescriptionLabel" styleClass="job-text" wrapText="true" />
+                            <Label fx:id="jobAccessLabel" styleClass="row-meta" wrapText="true" />
+                            <Label fx:id="jobContactLabel" styleClass="row-meta" wrapText="true" />
+
+                            <Region styleClass="rule" />
+
+                            <VBox fx:id="editBox" spacing="8">
+
+                                <Label text="Νέα Κατάσταση" styleClass="field-label" />
+                                <ComboBox fx:id="nextStatusBox" prefWidth="220" promptText="Ίδια με τώρα" />
+                                <Label fx:id="statusError" styleClass="error-label" wrapText="true" />
+
+                                <Label text="Σημείωση για τον φοιτητή" styleClass="field-label" />
+                                <TextArea fx:id="noteArea" wrapText="true" prefRowCount="3" />
+
+                                <HBox spacing="12" alignment="CENTER_LEFT">
+                                    <Label fx:id="noteError" styleClass="error-label" wrapText="true" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="noteCountLabel" styleClass="hint" minWidth="-Infinity" />
+                                </HBox>
+
+                                <Label text="Τη σημειώση τη βλέπει ο φοιτητής στις δηλώσεις του" styleClass="hint" wrapText="true" />
+
+                                <Button text="Αποθήκευση Αλλαγής" onAction="#onSave" styleClass="primary-button" defaultButton="true" />
+
+                            </VBox>
+
+                            <Label fx:id="closedLabel" styleClass="hint" wrapText="true" text="Η δήλωση έχει κλείσει και δεν αλλάζει άλλο." />
+
+                        </VBox>
+
+                    </VBox>
+                </ScrollPane>
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>
